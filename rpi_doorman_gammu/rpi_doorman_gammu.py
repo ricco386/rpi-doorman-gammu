@@ -32,19 +32,25 @@ class DoormanGammu(Doorman):
     def call(self):
         if hasattr(self.args, 'number') and self.args.number:
             logging.debug('Connecting to phone')
-            # Create object for talking with phone
-            self.cell_phone = gammu.StateMachine()
-            # Read the configuration (~/.gammurc)
-            self.cell_phone.ReadConfig()
-            # Connect to the phone
-            self.cell_phone.Init()
 
-            logging.debug('Dialing number: %s', self.args.number)
-            self.cell_phone.DialVoice(self.args.number)
-            logging.debug('Keep it ringing for %s seconds', self.ringing_time)
-            time.sleep(self.ringing_time)
-            self.cell_phone.PressKey('R', True)
-            logging.debug('Hangup the call')
+            try:
+                # Create object for talking with phone
+                self.cell_phone = gammu.StateMachine()
+                # Read the configuration (~/.gammurc)
+                self.cell_phone.ReadConfig()
+                # Connect to the phone
+                self.cell_phone.Init()
+
+            except gammu.GSMError as e:
+                logging.error(e)
+
+            else:
+                logging.debug('Dialing number: %s', self.args.number)
+                self.cell_phone.DialVoice(self.args.number)
+                logging.debug('Keep it ringing for %s seconds', self.ringing_time)
+                time.sleep(self.ringing_time)
+                self.cell_phone.PressKey('R', True)
+                logging.debug('Hangup the call')
 
     def callback_sensor_read(self):
         super(DoormanGammu, self).callback_sensor_read()
