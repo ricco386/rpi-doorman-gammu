@@ -29,7 +29,7 @@ Systemd scripts should be run under **default Raspberry Pi user** (pi) so script
 
 - `RPi.GPIO <https://pypi.python.org/pypi/RPi.GPIO>`_ (0.6.1+)
 - `rpi-doorman <https://pypi.python.org/pypi/rpi-doorman>`_ (1.1+)
-- `python-gammu <https://pypi.python.org/pypi/python-gammu>`_ (2.4+)
+- `gammu <https://github.com/gammu/gammu>`_ and `python-gammu <https://github.com/gammu/python-gammu>`_ (sudo apt-get install gammu python-gammu)
 
 
 License

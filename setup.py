@@ -16,7 +16,7 @@ from rpi_doorman_gammu import __version__ as VERSION
 
 read = lambda fname: open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-DEPS = ['RPi.GPIO', 'rpi-doorman'] #, 'python-gammu']
+DEPS = ['RPi.GPIO', 'rpi-doorman']
 
 CLASSIFIERS = [
     'Environment :: Console',
